@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+/* ── Font family bindings ──
+   These are the ONLY place font-family strings get written. Everything
+   else references var(--role-font) / var(--font-mono), set here or by
+   theme.ts's applyThemeVars(). */
+:root {
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Fraunces', serif;
+  --font-tech: 'Space Grotesk', sans-serif;
+  --font-editorial: 'Bodoni Moda', serif;
+  --font-heading: var(--font-cormorant);
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Fallback tokens so nothing breaks before a page calls applyThemeVars().
+     A page should always override these via theme.ts — these defaults
+     exist only to avoid a flash of unstyled content. */
+  --ink: #1c2333;
+  --ink-soft: #5a6478;
+  --ink-faint: #8a95ab;
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --accent: #3454a4;
+  --accent-2: #3fae74;
+  --border: #dbe2ec;
+  --role-font: var(--font-body);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  transition: background 500ms ease, color 500ms ease;
+}
+
+/* ── Card variants ──
+   ONE component (Card.svelte) renders these three. Adding a 4th texture
+   later means adding one block here, not a new component. */
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease;
+}
+.card:hover {
+  transform: translateY(-3px) rotate(var(--tilt, 0deg));
+  box-shadow: 0 16px 28px -18px color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+/* leadership: warm paper grain */
+.card--paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  mix-blend-mode: multiply;
+}
+
+/* developer: blueprint dot-grid */
+.card--dot-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.5;
+}
+
+/* videographer: sprocket hairline top/bottom */
+.card--reel-frame::before,
+.card--reel-frame::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--ink) 35%, transparent) 1.5px, transparent 1.5px);
+  background-size: 14px 100%;
+  background-position: center;
+  pointer-events: none;
+}
+.card--reel-frame::before { top: 0; }
+.card--reel-frame::after { bottom: 0; }
+
+/* Small rotated corner tag, shared across all 3 roles instead of a
+   colored left-border stripe. */
+.corner-tag {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  padding: 3px 11px;
+  border-radius: 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  transform: rotate(-3deg);
+  box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--ink) 35%, transparent);
+  background: var(--accent);
+  color: var(--surface);
+}
