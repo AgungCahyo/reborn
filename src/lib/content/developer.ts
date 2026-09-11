@@ -3,7 +3,7 @@ import type { RoleContent } from './index';
 
 export const developer: RoleContent = {
 	role: 'developer',
-	title: { en: 'Full-Stack\nDeveloper', id: 'Full-Stack\nDeveloper' },
+	title: { en: 'Full-Stack ()\nDeveloper', id: 'Full-Stack\nDeveloper' },
 	subtitle: {
 		en: 'Building robust, AI-integrated web apps with an eye for design.',
 		id: 'Membangun web app yang robust dan AI-ready dengan sense desain yang kuat.'

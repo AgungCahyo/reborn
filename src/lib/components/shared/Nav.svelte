@@ -16,29 +16,39 @@
 </script>
 
 <header
-	class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-10 h-15 backdrop-blur-md transition-colors duration-500"
+	class="fixed top-0 right-0 left-0 z-50 flex h-15 items-center justify-between px-6 backdrop-blur-md transition-colors duration-500 lg:px-10"
 	style="background:{theme.surface}dd; border-bottom:1px solid {theme.border}; color:{theme.ink}"
 >
 	<a href="/" class="flex items-center gap-2 text-[13px] font-medium tracking-wide">
-		<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+		<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+			<path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="1.5"
+				d="M7 16l-4-4m0 0l4-4m-4 4h18"
+			/>
 		</svg>
 		PORTFOLIO
 	</a>
 
-	<nav class="hidden md:flex items-center gap-8 text-[12px] tracking-[0.15em] uppercase">
+	<nav class="hidden items-center gap-8 text-[12px] tracking-[0.15em] uppercase md:flex">
 		{#each roles as r}
-	<a
-		href="/{r}"
-		onmouseenter={() => activeRole.set(r)}
-		style="color:{$activeRole === r
-			? getTheme(r).accent
-			: theme.inkFaint}"
-	>
-		{getTheme(r).headerLabel[$lang]}
-	</a>
-{/each}
-		<a href="/about" class="transition-colors" style="color:{$page.url.pathname === '/about' ? theme.accent : theme.inkFaint}">
+			{@const isActive =
+				$page.url.pathname === '/' ? $activeRole === r : $page.url.pathname.startsWith(`/${r}`)}
+
+			<a
+				href="/{r}"
+				class="transition-colors"
+				style="color:{isActive ? getTheme(r).accent : theme.inkFaint}"
+			>
+				{getTheme(r).headerLabel[$lang]}
+			</a>
+		{/each}
+		<a
+			href="/about"
+			class="transition-colors"
+			style="color:{$page.url.pathname === '/about' ? theme.accent : theme.inkFaint}"
+		>
 			{$t('About', 'Tentang')}
 		</a>
 	</nav>
@@ -46,7 +56,7 @@
 	<div class="flex items-center gap-4">
 		<a
 			href="/developer/work-with-me"
-			class="hidden sm:inline-block px-4 py-2 rounded-full text-[11px] tracking-widest uppercase transition-opacity hover:opacity-80"
+			class="hidden rounded-full px-4 py-2 text-[11px] tracking-widest uppercase transition-opacity hover:opacity-80 sm:inline-block"
 			style="background:{theme.ink}; color:{theme.surface}"
 		>
 			{$t('Start Project', 'Mulai Project')}
@@ -57,10 +67,16 @@
 			style="color:{theme.inkFaint}"
 			onclick={() => lang.update((l) => (l === 'en' ? 'id' : 'en'))}
 		>
-			{$lang === 'en' ? 'EN' : 'ID'} <span style="opacity:0.4">|</span> {$lang === 'en' ? 'ID' : 'EN'}
+			{$lang === 'en' ? 'EN' : 'ID'} <span style="opacity:0.4">|</span>
+			{$lang === 'en' ? 'ID' : 'EN'}
 		</button>
 
-		<button class="md:hidden" onclick={() => (menuOpen = !menuOpen)} aria-label="Menu" style="color:{theme.ink}">
+		<button
+			class="md:hidden"
+			onclick={() => (menuOpen = !menuOpen)}
+			aria-label="Menu"
+			style="color:{theme.ink}"
+		>
 			☰
 		</button>
 	</div>
@@ -68,7 +84,7 @@
 
 {#if menuOpen}
 	<div
-		class="fixed top-15 left-0 right-0 z-40 md:hidden flex flex-col p-6 gap-4"
+		class="fixed top-15 right-0 left-0 z-40 flex flex-col gap-4 p-6 md:hidden"
 		style="background:{theme.surface}; border-bottom:1px solid {theme.border}"
 	>
 		{#each roles as r}
