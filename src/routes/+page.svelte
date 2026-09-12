@@ -1,6 +1,7 @@
 <script lang="ts">
 	import TriptychPanel from '$lib/components/home/TriptychPanel.svelte';
 	import { activeRole } from '$lib/stores/activeRole';
+	import { lang } from '$lib/stores/lang';
 	import { content } from '$lib/content';
 	import { roles, getTheme } from '$lib/theme';
 
@@ -10,7 +11,25 @@
 	function activate(role: (typeof roles)[number]) {
 		activeRole.set(role);
 	}
+
+	const title = $derived(
+		$lang === 'id'
+			? 'Portofolio — Developer, Videografer & Leadership'
+			: 'Portfolio — Developer, Videographer & Leadership'
+	);
+	const description = $derived(
+		$lang === 'id'
+			? 'Full-stack developer, videographer, dan operations lead F&B — satu orang yang kerja lintas code, film, dan proses.'
+			: 'Full-stack developer, videographer, and F&B operations lead — one person working across code, film, and process.'
+	);
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+</svelte:head>
 
 <div class="flex h-[calc(100vh-60px)]">
 	{#each roles as role}

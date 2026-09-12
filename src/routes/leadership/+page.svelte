@@ -19,21 +19,33 @@
 	import CTA from '$lib/components/shared/CTA.svelte';
 	import Timeline from '$lib/components/shared/Timeline.svelte';
 	import SkillBars from '$lib/components/shared/SkillBars.svelte';
+	import { resolve } from '$app/paths';
 
 	const theme = getTheme('leadership');
 
-	onMount(() => activeRole.set('leadership'));
+		onMount(() => activeRole.set('leadership'));
+
+	const pageTitle = $derived(`${leadership.title[$lang].replace('\n', ' ')} — Portfolio`);
+
+
 </script>
 
+<svelte:head>
+	<title>{pageTitle}</title>
+	<meta name="description" content={leadership.subtitle[$lang]} />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={leadership.subtitle[$lang]} />
+</svelte:head>
+
 <div style="background:{theme.paper}; color:{theme.ink}">
-	<RoleHero {theme} content={leadership} stats={leadershipStats as any} />
+	<RoleHero {theme} content={leadership} stats={leadershipStats} />
 
 	<!-- The System — a real sequence -->
 	<section class="px-8 lg:px-16 py-16" style="border-top: 1px solid {theme.border}">
 		<div class="max-w-6xl mx-auto">
 			<SectionLabel {theme}>{$lang === 'id' ? 'Sistem' : 'The System'}</SectionLabel>
 			<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-				{#each leadershipStages as stage, i}
+				{#each leadershipStages as stage, i (stage)}
 					<Card {theme} tilt={i % 2 === 0 ? -0.5 : 0.5}>
 						<div
 							class="flex h-10 w-10 items-center justify-center text-[15px] font-semibold mb-4"
@@ -59,7 +71,7 @@
 		<div class="max-w-6xl mx-auto">
 			<SectionLabel {theme}>{$lang === 'id' ? 'Cara saya memimpin' : 'How I lead'}</SectionLabel>
 			<div class="grid md:grid-cols-3 gap-6">
-				{#each leadershipPractices as practice, i}
+				{#each leadershipPractices as practice, i (practice)}
 					<Card {theme} tilt={i === 0 ? -0.8 : i === 1 ? 0.6 : 0.3}>
 						<div
 							class="absolute top-0 left-6 right-6 h-1 rounded-full -translate-y-1/2"
@@ -80,14 +92,14 @@
 		<div class="max-w-6xl mx-auto">
 			<SectionLabel {theme}>{$lang === 'id' ? 'Bukti' : 'Proof'}</SectionLabel>
 			<div class="grid md:grid-cols-2 gap-6">
-				{#each leadershipProof as p, i}
+				{#each leadershipProof as p, i (p)}
 					<Card {theme} tilt={i % 2 === 0 ? 0.4 : -0.4} tag={p.subtitle[$lang]} class="p-6">
 						<h3 class="text-[18px] font-semibold mb-2 mt-2" style="font-family:{theme.font}; color:{theme.ink}">
 							{p.title[$lang]}
 						</h3>
 						<p class="text-[13px] leading-relaxed mb-4" style="color:{theme.inkSoft}">{p.body[$lang]}</p>
 						<div class="flex flex-wrap gap-2">
-							{#each p.tags as tag}
+							{#each p.tags as tag (tag)}
 								<span class="px-2.5 py-0.5 text-[11px] rounded-full" style="border: 1px solid {theme.border}; color:{theme.inkFaint}">
 									{tag}
 								</span>
@@ -116,11 +128,11 @@
 			<div>
 				<SectionLabel {theme}>{$lang === 'id' ? 'Keahlian Utama' : 'Core expertise'}</SectionLabel>
 				<div class="grid sm:grid-cols-2 gap-5">
-					{#each leadershipSkillGroups as group, i}
+					{#each leadershipSkillGroups as group, i (group)}
 						<div>
 							<p class="text-[12px] font-semibold mb-2.5" style="color:{theme.ink}">{group.category[$lang]}</p>
 							<div class="flex flex-wrap gap-1.5">
-								{#each group.items as item}
+								{#each group.items as item (item)}
 									<span
 										class="px-2.5 py-1 rounded-full text-[12px]"
 										style="background:{i % 2 === 0 ? theme.accent : theme.accent2}1a; color:{i % 2 === 0 ? theme.accent : theme.accent2}"
@@ -152,14 +164,15 @@
 
 	<!-- Footer nav -->
 	<div class="px-8 py-6 flex justify-between items-center" style="border-top: 1px solid {theme.border}">
-		<a href="/videographer" class="text-[13px] flex items-center gap-2 font-medium" style="color:{theme.inkSoft}">
+		<a href={resolve('/videographer')} class="text-[13px] flex items-center gap-2 font-medium" style="color:{theme.inkSoft}">
 			<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
 			</svg>
-			{$lang === 'id' ? 'Sebelumnya: Videografer' : 'Prev: Videographer'}
+			{$lang === 'id' ? 'Sebelumnya:' : 'Prev:'}
+			{getTheme('videographer').headerLabel[$lang]}
 		</a>
-		<span class="text-[12px] font-medium" style="color:{theme.inkSoft}">03 / {$lang === 'id' ? 'Leadership' : 'Leadership'}</span>
-		<a href="/" class="text-[13px] flex items-center gap-2 font-medium" style="color:{theme.accent}">
+		<span class="text-[12px] font-medium" style="color:{theme.inkSoft}">03 / {getTheme('leadership').headerLabel[$lang]}</span>
+		<a href={resolve('/')} class="text-[13px] flex items-center gap-2 font-medium" style="color:{theme.accent}">
 			{$lang === 'id' ? 'Kembali ke Beranda' : 'Back to home'}
 			<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />

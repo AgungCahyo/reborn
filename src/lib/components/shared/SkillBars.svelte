@@ -12,7 +12,7 @@
 </script>
 
 <div class="space-y-4">
-	{#each skills as skill}
+	{#each skills as skill (skill)}
 		<div>
 			<div class="flex justify-between items-baseline mb-1.5">
 				<span class="text-[13px] font-medium" style="color:{theme.ink}">{skill.name[$lang]}</span>

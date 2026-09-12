@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { lang } from '$lib/stores/lang';
 	import type { RoleTheme } from '$lib/theme';
-	import type { RoleContent } from '$lib/content';
+	import type { RoleContent, Localized } from '$lib/content';
 
 	let {
 		theme,
@@ -10,7 +10,12 @@
 	}: {
 		theme: RoleTheme;
 		content: RoleContent;
-		stats: { n: string; l: { en: string; id: string } }[];
+		// n used to be typed `string`, but leadershipStats needs it localized
+		// ("Team Coordinator" / "Koordinator Tim") — so every stat's `n` is a
+		// Localized object now, and this component indexes it like `l`.
+		// Numeric/date stats (developer, videographer) just carry the same
+		// value in both languages.
+		stats: { n: Localized; l: Localized }[];
 	} = $props();
 </script>
 
@@ -28,9 +33,9 @@
 					{content.subtitle[$lang]}
 				</p>
 				<div class="flex flex-wrap gap-4 mt-10">
-					{#each stats as s}
+					{#each stats as s (s.l)}
 						<div class="px-4 py-2.5 rounded-lg" style="border: 1px solid {theme.border}; background:{theme.surface}">
-							<div class="text-lg font-bold" style="color:{theme.ink}">{s.n}</div>
+							<div class="text-lg font-bold" style="color:{theme.ink}">{s.n[$lang]}</div>
 							<div class="text-[9px] tracking-[0.2em] uppercase mt-0.5" style="color:{theme.inkFaint}">
 								{s.l[$lang]}
 							</div>

@@ -18,7 +18,7 @@
 		style="background: linear-gradient(to bottom, transparent, {theme.border} 10%, {theme.border} 90%, transparent)"
 	></div>
 	<div class="space-y-10">
-		{#each items as item}
+		{#each items as item (item)}
 			<div class="relative flex flex-col sm:flex-row gap-4 sm:gap-8">
 				<div class="sm:w-[80px] shrink-0 flex sm:flex-col sm:items-end gap-2 sm:gap-1 text-right">
 					<span class="text-[13px] font-semibold" style="color:{theme.accent}">{item.year}</span>
