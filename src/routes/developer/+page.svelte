@@ -11,7 +11,7 @@
 		developerProof,
 		developerJourney,
 		developerSkillGroups,
-		developerTechniques
+		developerTechniques,
 	} from '$lib/content/developer';
 	import RoleHero from '$lib/components/shared/RoleHero.svelte';
 	import SectionLabel from '$lib/components/shared/SectionLabel.svelte';
@@ -19,6 +19,7 @@
 	import CTA from '$lib/components/shared/CTA.svelte';
 	import Timeline from '$lib/components/shared/Timeline.svelte';
 	import SkillBars from '$lib/components/shared/SkillBars.svelte';
+	import Projects from '$lib/components/developer/Projects.svelte';
 
 	const theme = getTheme('developer');
 
@@ -84,27 +85,13 @@
 		</div>
 	</section>
 
-	<!-- Proof — case studies -->
-	<section class="px-8 lg:px-16 py-16" style="border-top: 1px solid {theme.border}">
+	<!-- Proof — case studies, laid out like the React version's project
+	     cards: corner tag, year + status badge, external links, a
+	     highlights list, then tags below a divider. -->
+<section class="px-8 lg:px-16 py-16" style="border-top: 1px solid {theme.border}">
 		<div class="max-w-6xl mx-auto">
 			<SectionLabel {theme}>{$lang === 'id' ? 'Bukti' : 'Proof'}</SectionLabel>
-			<div class="grid md:grid-cols-2 gap-6">
-				{#each developerProof as p, i}
-					<Card {theme} tilt={i % 2 === 0 ? 0.4 : -0.4} tag={p.subtitle[$lang]} class="p-6">
-						<h3 class="text-[18px] font-semibold mb-2 mt-2" style="font-family:{theme.font}; color:{theme.ink}">
-							{p.title[$lang]}
-						</h3>
-						<p class="text-[13px] leading-relaxed mb-4" style="color:{theme.inkSoft}">{p.body[$lang]}</p>
-						<div class="flex flex-wrap gap-2">
-							{#each p.tags as tag}
-								<span class="px-2.5 py-0.5 text-[11px] rounded-full" style="border: 1px solid {theme.border}; color:{theme.inkFaint}">
-									{tag}
-								</span>
-							{/each}
-						</div>
-					</Card>
-				{/each}
-			</div>
+			<Projects {theme} projects={developerProof} />
 		</div>
 	</section>
 
@@ -167,9 +154,10 @@
 			</svg>
 			{$lang === 'id' ? 'Kembali ke Beranda' : 'Back to home'}
 		</a>
-		<span class="text-[12px] font-medium" style="color:{theme.inkSoft}">01 / {$lang === 'id' ? 'Developer' : 'Developer'}</span>
+		<span class="text-[12px] font-medium" style="color:{theme.inkSoft}">01 / {getTheme('developer').headerLabel[$lang]}</span>
 		<a href="/videographer" class="text-[13px] flex items-center gap-2 font-medium" style="color:{theme.accent}">
-			{$lang === 'id' ? 'Selanjutnya: Videografer' : 'Next: Videographer'}
+			{$lang === 'id' ? 'Selanjutnya:' : 'Next:'}
+			{getTheme('videographer').headerLabel[$lang]}
 			<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 			</svg>

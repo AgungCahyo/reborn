@@ -3,7 +3,7 @@ import type { RoleContent } from './index';
 
 export const developer: RoleContent = {
 	role: 'developer',
-	title: { en: 'Full-Stack ()\nDeveloper', id: 'Full-Stack\nDeveloper' },
+	title: { en: 'Full-Stack\nDeveloper', id: 'Full-Stack\nDeveloper' },
 	subtitle: {
 		en: 'Building robust, AI-integrated web apps with an eye for design.',
 		id: 'Membangun web app yang robust dan AI-ready dengan sense desain yang kuat.'
@@ -88,7 +88,29 @@ export const developerPractices = [
 ];
 
 // "Proof" section — case studies, ported from data/developer.ts projects
+export interface DevProofLink {
+	label: { en: string; id: string };
+	href: string;
+}
+
+// "Proof" section — case studies, ported from data/developer.ts projects
 export const developerProof = [
+	{
+		type: { en: 'Web Application', id: 'Aplikasi Web' },
+		title: { en: 'Wedding Invitation', id: 'Wedding Invitation' },
+		subtitle: {
+			en: 'Digital Wedding Invitation Platform',
+			id: 'Platform Undangan Pernikahan Digital'
+		},
+		body: {
+			en: 'Built a digital wedding invitation platform using Next.js, React, TypeScript, Tailwind CSS, and PostgreSQL.',
+			id: 'Membangun platform undangan pernikahan digital menggunakan Next.js, React, TypeScript, Tailwind CSS, dan PostgreSQL.'
+		},
+		tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
+		links: [
+			{ label: { en: 'Live Site', id: 'Situs Live' }, href: 'https://ayutika.agungcahyo.my.id' }
+		]
+	},
 	{
 		type: { en: 'Web Application', id: 'Aplikasi Web' },
 		title: { en: 'SkripIn', id: 'SkripIn' },
@@ -97,7 +119,8 @@ export const developerProof = [
 			en: 'Designed for creators stuck between inconsistent script quality and slow turnaround. SkripIn turns rough ideas into ready-to-shoot scripts fast, while preserving each brand voice through a structured multi-agent workflow.',
 			id: 'Dirancang untuk creator yang terjebak antara kualitas skrip yang nggak konsisten dan proses yang lambat. SkripIn mengubah ide mentah jadi skrip siap produksi lebih cepat, sambil tetap menjaga brand voice lewat workflow multi-agent yang terstruktur.'
 		},
-		tags: ['Next.js 16', 'React 19', 'TypeScript', 'Google Gemini', 'OpenAI TTS', 'Jest']
+		tags: ['Next.js 16', 'React 19', 'TypeScript', 'Google Gemini', 'OpenAI TTS', 'Jest'],
+		links: [{ label: { en: 'Live App', id: 'Aplikasi Live' }, href: 'https://skripin.com' }]
 	},
 	{
 		type: { en: 'Web Application', id: 'Aplikasi Web' },
@@ -107,17 +130,29 @@ export const developerProof = [
 			en: 'Built to solve drop-off in relationship quiz products: users wanted deeper insight, not generic scores. Delivers richer, personalized analysis with automated WhatsApp delivery and a freemium upsell flow.',
 			id: 'Dibangun untuk mengatasi drop-off pada produk kuis hubungan: user butuh insight yang lebih dalam, bukan skor generik. Memberi analisis personal yang lebih kaya lewat pengiriman otomatis via WhatsApp dan freemium upsell flow.'
 		},
-		tags: ['Next.js 16', 'Prisma ORM', 'PostgreSQL', 'Redis', 'Midtrans', 'n8n']
+		tags: ['Next.js 16', 'Prisma ORM', 'PostgreSQL', 'Redis', 'Midtrans', 'n8n'],
+		links: [
+			{ label: { en: 'Live Site', id: 'Situs Live' }, href: 'https://tes-kecocokan.vercel.app/' }
+		]
 	},
 	{
 		type: { en: 'Automation', id: 'Otomasi' },
 		title: { en: 'Crypto Radar Trading Bot', id: 'Bot Trading Crypto Radar' },
-		subtitle: { en: 'Autonomous Pump.fun Signal & Trading Bot', id: 'Bot Trading & Sinyal Pump.fun Otonom' },
+		subtitle: {
+			en: 'Autonomous Pump.fun Signal & Trading Bot',
+			id: 'Bot Trading & Sinyal Pump.fun Otonom'
+		},
 		body: {
 			en: 'Built to solve one core problem: high-volatility memecoin entries were too slow and emotional. Automates signal detection and execution in real time, then protects downside with layered trailing stops.',
 			id: 'Dibangun untuk menyelesaikan satu masalah utama: entry memecoin yang super volatil sering telat dan emosional. Mengotomatiskan deteksi sinyal dan eksekusi real-time, lalu melindungi risiko lewat trailing stop bertingkat.'
 		},
-		tags: ['Node.js', 'Solana Web3.js', 'Telegraf', 'WebSocket', 'Jupiter API']
+		tags: ['Node.js', 'Solana Web3.js', 'Telegraf', 'WebSocket', 'Jupiter API'],
+		links: [
+			{
+				label: { en: 'Contact for Demo', id: 'Hubungi untuk Demo' },
+				href: 'https://wa.me/6281392290571?text=Hi%2C%20I%27m%20interested%20in%20the%20Crypto%20Radar%20Trading%20Bot%20demo'
+			}
+		]
 	},
 	{
 		type: { en: 'Mobile App', id: 'Aplikasi Mobile' },
@@ -127,7 +162,35 @@ export const developerProof = [
 			en: 'Built for F&B owners who priced products by guesswork and lost margin. Standardizes HPP calculation, gives recommended selling prices, and keeps costing available even when internet is unstable.',
 			id: 'Dibangun untuk owner F&B yang sering menentukan harga pakai perkiraan dan akhirnya kehilangan margin. Menstandarkan kalkulasi HPP, memberi rekomendasi harga jual, dan tetap bisa dipakai meski internet tidak stabil.'
 		},
-		tags: ['React Native', 'Firebase Auth', 'Firestore', 'Firebase Storage']
+		tags: ['React Native', 'Firebase Auth', 'Firestore', 'Firebase Storage'],
+		links: [
+			{
+				label: { en: 'Download APK', id: 'Unduh APK' },
+				href: 'https://drive.google.com/file/d/1evGGLMhyrsEbcBGFRzgjBmrKxW4Ce4tR/view?usp=sharing'
+			}
+		]
+	},
+	{
+		type: { en: 'Automation', id: 'Otomasi' },
+		title: { en: 'WhatsApp AI Chatbot', id: 'WhatsApp AI Chatbot' },
+		subtitle: { en: 'Intelligent Customer Service Bot', id: 'Bot Layanan Pelanggan Cerdas' },
+		body: {
+			en: 'Created to reduce repetitive customer support workload on WhatsApp. The bot handles common questions, voice notes, and follow-up context automatically so response time stays fast even with high incoming volume.',
+			id: 'Dibuat untuk mengurangi beban support yang repetitif di WhatsApp. Bot ini menangani pertanyaan umum, voice note, dan konteks lanjutan secara otomatis supaya response time tetap cepat saat volume chat tinggi.'
+		},
+		tags: [
+			'n8n',
+			'Google Gemini',
+			'WhatsApp Business API',
+			'Google STT',
+			'Google TTS',
+			'LangChain',
+			'Google Sheets API'
+		],
+		links: [{
+			label: { en: 'Try Demo', id: 'Coba Demo'},
+			href: 'https://wa.me/6281392290571'
+		}]
 	}
 ];
 
@@ -216,12 +279,65 @@ export const developerSkillGroups = [
 
 // "Capability" — proficiency bars, ported from devSkills
 export const developerTechniques = [
-	{ name: { en: 'React / Next.js', id: 'React / Next.js' }, level: 92, desc: { en: 'Component systems, SSR/SSG, route architecture', id: 'Sistem komponen, SSR/SSG, arsitektur route' } },
-	{ name: { en: 'TypeScript', id: 'TypeScript' }, level: 88, desc: { en: 'Type-safe architecture across the stack', id: 'Arsitektur type-safe di seluruh stack' } },
-	{ name: { en: 'Node.js / API Design', id: 'Node.js / Desain API' }, level: 85, desc: { en: 'Production-grade services and integrations', id: 'Layanan dan integrasi standar produksi' } },
-	{ name: { en: 'PostgreSQL / Prisma', id: 'PostgreSQL / Prisma' }, level: 82, desc: { en: 'Schema-driven, type-safe data access', id: 'Akses data type-safe berbasis skema' } },
-	{ name: { en: 'AI Integration', id: 'Integrasi AI' }, level: 87, desc: { en: 'Gemini, OpenAI, and LLM workflow orchestration', id: 'Gemini, OpenAI, dan orkestrasi workflow LLM' } },
-	{ name: { en: 'n8n Automation', id: 'Otomasi n8n' }, level: 90, desc: { en: 'Workflow automation for WhatsApp and ops', id: 'Otomasi workflow untuk WhatsApp dan operasional' } },
-	{ name: { en: 'Testing (Jest)', id: 'Testing (Jest)' }, level: 85, desc: { en: 'Automated tests, 90%+ coverage on shipped apps', id: 'Automated test, cakupan 90%+ di aplikasi produksi' } },
-	{ name: { en: 'React Native', id: 'React Native' }, level: 78, desc: { en: 'Cross-platform mobile with shared React patterns', id: 'Mobile cross-platform dengan pola React yang sama' } }
+	{
+		name: { en: 'React / Next.js', id: 'React / Next.js' },
+		level: 92,
+		desc: {
+			en: 'Component systems, SSR/SSG, route architecture',
+			id: 'Sistem komponen, SSR/SSG, arsitektur route'
+		}
+	},
+	{
+		name: { en: 'TypeScript', id: 'TypeScript' },
+		level: 88,
+		desc: {
+			en: 'Type-safe architecture across the stack',
+			id: 'Arsitektur type-safe di seluruh stack'
+		}
+	},
+	{
+		name: { en: 'Node.js / API Design', id: 'Node.js / Desain API' },
+		level: 85,
+		desc: {
+			en: 'Production-grade services and integrations',
+			id: 'Layanan dan integrasi standar produksi'
+		}
+	},
+	{
+		name: { en: 'PostgreSQL / Prisma', id: 'PostgreSQL / Prisma' },
+		level: 82,
+		desc: { en: 'Schema-driven, type-safe data access', id: 'Akses data type-safe berbasis skema' }
+	},
+	{
+		name: { en: 'AI Integration', id: 'Integrasi AI' },
+		level: 87,
+		desc: {
+			en: 'Gemini, OpenAI, and LLM workflow orchestration',
+			id: 'Gemini, OpenAI, dan orkestrasi workflow LLM'
+		}
+	},
+	{
+		name: { en: 'n8n Automation', id: 'Otomasi n8n' },
+		level: 90,
+		desc: {
+			en: 'Workflow automation for WhatsApp and ops',
+			id: 'Otomasi workflow untuk WhatsApp dan operasional'
+		}
+	},
+	{
+		name: { en: 'Testing (Jest)', id: 'Testing (Jest)' },
+		level: 85,
+		desc: {
+			en: 'Automated tests, 90%+ coverage on shipped apps',
+			id: 'Automated test, cakupan 90%+ di aplikasi produksi'
+		}
+	},
+	{
+		name: { en: 'React Native', id: 'React Native' },
+		level: 78,
+		desc: {
+			en: 'Cross-platform mobile with shared React patterns',
+			id: 'Mobile cross-platform dengan pola React yang sama'
+		}
+	}
 ];

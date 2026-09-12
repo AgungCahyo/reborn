@@ -5,13 +5,13 @@ export const videographer: RoleContent = {
 	role: 'videographer',
 	title: { en: 'Videographer\n& Editor', id: 'Videographer\n& Editor' },
 	subtitle: {
-		en: 'Cinematic storytelling — corporate, documentary & brand film.',
-		id: 'Cinematic storytelling - corporate, documentary, dan brand film.'
+		en: 'Cinematic storytelling — corporate, documentary & brand film',
+		id: 'Cinematic storytelling - corporate, documentary, dan brand film'
 	},
-	tag: { en: '4K · Premiere Pro · DaVinci Resolve', id: '4K · Premiere Pro · DaVinci Resolve' },
+	tag: { en: '4K · Premiere Pro · DaVinci Resolve · CapCut', id: '4K · Premiere Pro · DaVinci Resolve · CapCut' },
 	cta: { en: 'View Visual Work', id: 'Lihat Visual Work' },
-	photo: '/profile2.png',
-	photoFlip: false
+	photo: '/profile3.png',
+	photoFlip: true
 };
 
 // ── Detail-page-only fields, ported 1:1 from the React version's
@@ -56,7 +56,9 @@ export const videographerPractices = [
 // "Selected Work" — case studies, ported from data/videographer.ts projects
 export const videographerProof = [
 	{
+		videoId: 'ChtPLCgy_vo',
 		type: { en: 'Personal Project', id: 'Proyek Pribadi' },
+		year: '2024',
 		title: { en: 'Picnic 2024', id: 'Piknik 2024' },
 		subtitle: { en: 'Color Grading · Sound Design', id: 'Color Grading · Sound Design' },
 		body: {
@@ -64,10 +66,13 @@ export const videographerProof = [
 			id: 'Video yang menangkap momen piknik di tahun 2024, dibuat untuk hobi.'
 		},
 		tags: ['Color Grading', 'Sound Design'],
-		link: 'https://youtu.be/ChtPLCgy_vo'
+		link: 'https://youtu.be/ChtPLCgy_vo',
+		linkLabel: { en: 'Watch Video', id: 'Tonton Video' }
 	},
 	{
+		videoId: 'IGgQigrSOGE',
 		type: { en: 'Personal Project', id: 'Proyek Pribadi' },
+		year: '2024',
 		title: { en: 'Family Time', id: 'Waktu Bersama Keluarga' },
 		subtitle: { en: 'Directing · Color Grading', id: 'Directing · Color Grading' },
 		body: {
@@ -75,29 +80,36 @@ export const videographerProof = [
 			id: 'Video singkat yang dibuat untuk hobi, menangkap momen-momen hangat dan sederhana saat menghabiskan waktu bersama keluarga.'
 		},
 		tags: ['Directing', 'Color Grading', 'Family'],
-		link: 'https://youtu.be/IGgQigrSOGE'
+		link: 'https://youtu.be/IGgQigrSOGE',
+		linkLabel: { en: 'Watch Video', id: 'Tonton Video' }
 	},
 	{
+		videoId: 'sNEY6BpiXko',
 		type: { en: 'Personal Project', id: 'Proyek Pribadi' },
-		title: { en: 'Independence Day Carnival — Bandungrejo', id: 'Karnaval 17 Agustus — Bandungrejo' },
+		year: '2023',
+		title: { en: 'Independence Day Carnival – Bandungrejo', id: 'Karnaval 17 Agustus – Bandungrejo' },
 		subtitle: { en: 'Event Coverage · Run-and-gun', id: 'Event Coverage · Run-and-gun' },
 		body: {
 			en: 'Footage from an Independence Day carnival parade in Bandungrejo village, shot just for fun to capture the lively atmosphere of the celebration.',
 			id: 'Rekaman dari pawai karnaval 17 Agustusan di Desa Bandungrejo, diambil untuk hobi guna menangkap suasana ramai perayaan tersebut.'
 		},
 		tags: ['Event Coverage', 'Run-and-gun', 'Sound Design'],
-		link: 'https://youtu.be/sNEY6BpiXko'
+		link: 'https://youtu.be/sNEY6BpiXko',
+		linkLabel: { en: 'Watch Video', id: 'Tonton Video' }
 	},
 	{
+		videoId: 'CJWyWw1W8CU',
 		type: { en: 'Personal Project', id: 'Proyek Pribadi' },
-		title: { en: 'Graduation Day — SDN 2 Gajah', id: 'Hari Kelulusan — SDN 2 Gajah' },
+		year: '2023',
+		title: { en: 'Graduation Day – SDN 2 Gajah', id: 'Hari Kelulusan – SDN 2 Gajah' },
 		subtitle: { en: 'Documentary · Color Grading', id: 'Documentary · Color Grading' },
 		body: {
 			en: 'An aftermovie made for fun, documenting the graduation ceremony at SDN 2 Gajah elementary school and the key moments of the day.',
 			id: 'Aftermovie yang dibuat untuk hobi, mendokumentasikan acara kelulusan di SDN 2 Gajah beserta momen-momen penting di hari itu.'
 		},
 		tags: ['Documentary', 'Color Grading', 'School Event'],
-		link: 'https://youtu.be/CJWyWw1W8CU'
+		link: 'https://youtu.be/CJWyWw1W8CU',
+		linkLabel: { en: 'Watch Video', id: 'Tonton Video' }
 	}
 ];
 
